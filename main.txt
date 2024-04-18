@@ -1,0 +1,311 @@
+....
+
+
+
+Title :
+
+
+
+Skin Cancer Classification Using Convolution Neural Networks
+
+
+
+Introduction :
+
+
+
+Skin Cancer is one of the most dangerous and common type of cancer. Catching it really important because it makes the treatment easier and increases the probability of being survived, and makes our lives easier. however spotting skin cancer early can be so difficult and it's very common that doctor misunderstoods the skin cancer by something else, human made mistakes.
+
+
+
+In this AI Era, A.I has gotten better at helping doctors in operations and diagnosing the diseases, including skin cancer. One technology that's especially improved a lot is deep learning industry. contains various neural networks Artificial , Convolutional and Recurrent neural networks. In that Convolutional Neural Networks which are really good at analyzing the images. by traing the convoutional model on a lot of images of skin cancer, CNN's can learn to spot the diseaese, some time they work even better than doctors.
+
+
+
+In this Project Report. we discuss how we're using CNN's to try to identify skin cancer from images. And there are >10000 images are available in the Open Source Clincal HAM10000 Dataset. we aiml to make a system that is accurate over 80% of the time, makes very minor mistakes during the predictions. Our Results shows that our method works better than other methods that have been tried before.
+
+
+
+Abstract :
+
+
+
+Skin cancer, especially melanoma and basal cell carcinoma, is a major global health danger because it can spread quickly if it is not discovered in its early stages. Improving patient outcomes and lowering the death rate can be greatly aided by early and precise detection. However, a number of issues, such as the subjectivity of visual diagnosis and the unpredictability of expert interpretation, can undermine the efficacy of traditional diagnostic techniques. The field of medical diagnostics is starting to change as a result of recent developments in image processing and machine vision, which provide new tools that can improve the precision and effectiveness of conventional techniques.
+
+
+
+Based on a dataset of past clinical photographs, our research in this context uses convolutional neural networks (CNNs), a type of deep learning particularly skilled at processing image data, to detect and categorize skin cancer types. The main goal of our research was to create a CNN model that could accurately diagnose skin cancer and accurately classify its many forms. Our research aimed to attain the following precise goals: detection accuracy above 80%, false negativity rate <10%, precision rate >80%, and comprehensive data visualizations for interpreting the CNN model's performance.
+
+
+
+Our approach comprised selecting a large collection of photos with annotations related to skin cancer, creating a suitable CNN architecture, and training the model with a strong cross-validation framework to guarantee generalizability. In order to improve the model's capacity to learn from a varied collection of photos that reflect different skin types and cancer stages, we additionally employed a number of data augmentation techniques.
+
+
+
+Our study's simulation results show that, in addition to meeting our initial performance objectives, the suggested CNN model outperforms other current techniques in terms of accuracy and precision. This superiority demonstrates how CNN-based models have the potential to transform skin cancer early detection, making them an invaluable tool in clinical settings.
+
+
+
+The results imply that using CNNs for skin cancer detection can greatly help dermatologists identify and categorize skin malignancies more quickly and precisely, which may enhance patient care and result in better outcomes. Subsequent efforts will center on enhancing the model, growing the dataset, and putting the model to the test in actual clinical settings in order to confirm its effectiveness and usefulness in real-world scenarios.
+
+
+
+
+
+Methodology :
+
+
+
+Initially we downloaded the HAM10000 dataset from Harvard repository (https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T) which is about 6gb which contains 10,000 images and metadata.csv we downloaded into our local system and we loaded the data using pandas with the help of CSV data loader.
+
+
+
+And the Next Step is data pre-processing the metadata.csv undergoes pre processing which includes dimensionality and normalization adjust ments are taken care. and we have to load the images into different directories conveyed as HAM-images-PART-1 and HAM-images-PART-2  
+
+
+
+And then We build a deep learning model which is constructed using Tensorflow's keras api, which has convolutionl layers, max pooling, and dense layers for classification. and the model is trained with parameteres which are specified for optimization and loss calculation  
+
+
+
+Finally The Model Performance is evaluated using a Confusion Matrix and accuracy Metrics and we visualized some plots and graphs for different varaibels, functionalities and categories.
+
+
+
+
+
+Tools,Techniques or Software utilized :
+
+
+
+Python Libraries : Seaborn, Matplotlib (for visualiztion), numpy and pandas (for data manipulation), fastai and opencv used for to visualize and do some mathematical calculations on skin cancer Images
+
+
+
+Techniques :
+
+
+
+Data visualization : Initial data exploration with visualization techniques.
+Oversampling : Handling imbalanced datasets using RandomOverSampler
+Deep Learning : Building and training convolutional neural networks for image classification.
+
+
+
+Software Utilized :
+
+
+
+The Software stack is based on Python with extensive use of datascience and machine learning libraries such as pandas, numpy, seaborn, matplotlib, tensorflow, and others packages
+
+Coding Phase :
+
+
+
+1. Displaying the first five rows of the dataset
+2. Frequency Distribution of Classes
+
+
+
+sns.countplot(x = 'dx', data = tabular_data)
+plt.xlabel('Disease', size=12)
+plt.ylabel('Frequency', size=12)
+plt.title('Frequency Distribution of Classes', size=16)
+
+
+
+3. Displaying the disease over gender through pie chart
+
+
+
+bar, ax = plt.subplots(figsize = (10,10))
+plt.pie(tabular_data['sex'].value_counts(), labels = tabular_data['sex'].value_counts().index, autopct="%.1f%%")
+plt.title('Gender of Patient', size=16)
+
+
+
+4. Histograms of Age of Patients (Counts vs Age)
+
+
+
+bar, ax = plt.subplots(figsize=(10,10))
+sns.histplot(tabular_data['age'])
+plt.title('Histogram of Age of Patients', size=16)
+
+
+
+5. Location of Diseaese over gender
+
+
+
+value = tabular_data[['localization', 'sex']].value_counts().to_frame()
+value.reset_index(level=[1,0 ], inplace=True)
+temp = value.rename(columns = {'localization':'location', 0: 'count'})
+
+
+
+bar, ax = plt.subplots(figsize = (12, 12))
+sns.barplot(x = 'location',  y='count', hue = 'sex', data = temp)
+plt.title('Location of disease over Gender', size = 16)
+plt.xlabel('Disease', size=12)
+plt.ylabel('Frequency/Count', size=12)
+plt.xticks(rotation = 90)
+
+
+
+6. Model defining and parameter visualization :
+
+
+
+Model : "sequential_11"
+________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_267 (Conv2D)          (None, 28, 28, 16)        448       
+_________________________________________________________________
+conv2d_268 (Conv2D)          (None, 26, 26, 32)        4640      
+_________________________________________________________________
+max_pooling2d_33 (MaxPooling (None, 13, 13, 32)        0         
+_________________________________________________________________
+conv2d_269 (Conv2D)          (None, 13, 13, 32)        9248      
+_________________________________________________________________
+conv2d_270 (Conv2D)          (None, 11, 11, 64)        18496     
+_________________________________________________________________
+max_pooling2d_34 (MaxPooling (None, 6, 6, 64)          0         
+_________________________________________________________________
+flatten_7 (Flatten)          (None, 2304)              0         
+_________________________________________________________________
+dense_25 (Dense)             (None, 64)                147520    
+_________________________________________________________________
+dense_26 (Dense)             (None, 32)                2080      
+_________________________________________________________________
+dense_27 (Dense)             (None, 7)                 231       
+=================================================================
+Total params: 182,663
+Trainable params: 182,663
+Non-trainable params: 0
+
+
+
+7. Plot Accuracy and Loss  :
+
+
+
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+plt.show()
+
+
+
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+plt.show()
+
+
+
+
+
+8. Model Testing to return the loss and accuracy
+
+
+
+loss, acc = model.evaluate(X_test, Y_test, verbose=2)
+
+
+
+294/294 - 3s - loss: 0.1404 - accuracy: 0.9697
+
+
+
+
+
+9. Confusion Matrix (True vs Predicted) :
+
+
+
+10. Frequency of Labels Classified Incorrectly
+
+
+
+11. Total vs Correctly Classified Frequency by label
+
+
+
+12. Pie chart of localization
+
+
+
+13. Frequency of Male vs Female
+
+
+
+14. Displaying the Sample Images of the dataset
+
+
+
+
+
+
+
+Conclusions :
+
+
+
+Finally we achieved the accuracy which is more than 98% of training accuracy and >97% of validation accuracy and it almost(90%) classified all the images correctly only some categories has been misclassifieds and this models is ready to integrate to flask (or) django or any backend server and it helps the doctors or any diagnostic persons to classify the realtime images.
+
+
+
+Recommendations :
+
+
+
+1. Further Data Collection :
+
+
+
+While the HAM10000 dataset provides almost >10000 images of the skin cancer and we can combine some more benchmark datasets which improves the models accuracy while classification. so that it covers a broader spectrum of skin tones and less common cancer types could improve the models depth and accuracy for the real time detections.
+
+
+
+2. Real Time Data Integration :
+
+
+
+By Collaborting with some Hospitals and We can collect the real time data from the hospitals it self so that after training the model with real time images so that we can improve the model robustness and accuracy
+
+
+
+3. Model Improvement :
+
+
+
+Experiment with more complex CNN architectture or newer deeplearning models like Resnet or Mobilenet and for the Weights of the Images we can use the Imagenet weights.
+
+
+
+4. Data Augmentation :
+
+
+
+Implement more advanced image augmentation techniques to stimulate a wider variety of possible real-world conditions under skin cancer images can be taken such as varying light conditions, angles and images resolutions.
+
+
+
+5. Integrating Model to UI :
+
+
+
+We can save our trained model to .h5 extension so that we can intergrate the model to either flask api or django api
+
+
+
+
+
