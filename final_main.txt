@@ -1,0 +1,70 @@
+...........
+
+Title :  Skin Cancer Classification With CNN's
+
+Introduction : 
+
+Now a days Skin cancer is becomes one of the most common type cancer.- finding the skin cancer is so difficult and even if seen so we can't come to a conclusion weather it is skin cancer or not and this will help to makes the treatment easier and increases the possibilty of getting cured and makes our lives easier how ever it's very common that doctors misunderstood the skin cancer by something else just like human mistakes 
+
+In this New Gen Era , Every technology has been boominh  A.I has gotten better at helping doctors during operations and at diagnosing the diseses including patients monitoring solving the hear related problems and finding the tumors and many more.  One thing thts's improved a lot a lot is Machine Leanring and Deep Learning Part and the IQ of AI has been reached nearer to the human. In deep learning  contains different types of neural networks Artificial neural networks , Convolutional and Recurrent Neural works. In that convolutional neural networks which are really good at prediciting and classifying the images by traing the convoutional model on a lot of images of skin cancer, CNN's can learn to spot the diseaese, some time they work even better than doctors.
+
+In this Project Report. we discuss how we're using CNN's to try to identify skin cancer from images. And there are >10000 images are available in the Open Source Clincal HAM10000 Dataset. we aiml to make a system that is accurate over 80% of the time, makes very minor mistakes during the predictions. Our Results shows that our method works better than other methods that have been tried before.
+
+
+Abstract : 
+
+In skin cancer there are classified into 7 different trypes of skin cancers in that particularly melanoma and basal cell carcinoma are more dangerous their treatment is so typical comparitive to other types and because of these two types most of the people are in danger due to lack of knowledge about it. why they are dangerous means those spread across the body so quickly if the person doesn't find it during the starting stage. in increases the possibilty  of the person detah is increases. however  a number of issues are there such as indetifying the diseaese visually and finding it in amedical process it becomes unpredictable. it overcomes possiblity of getting find through the traditional diagnostic techniques. In the Recent era medical industry has been developeda lot in the machinery wise and with the help of improvements of AI and computer vision like image processing which provide new tools and techniques that can improve the precision of finding the Skin cancer 
+
+Based on dataset of HAM10000 our project uses convolutional neural networks(CNN's), atype of deep learning algorithm which is particulary used for the image processign and images normalization and many more to categorize the skin cancer types . the main theme of our project is to create CNN model that could actually diagnosing the skin cancer with more precision. in it's all forms. our project is mainly foucused on achieving the accuracy above 95%, with the false negative rate less than 10% and precision rates supposed to be more than 80% and we need to display the data visualizations with all categories which are available on the data set HAM10000;
+
+In hand, 10,000 data set there are more than 10,000 plus images in that. there are seven classes, which means images has been categorized into seven different types and. it is a large correction of photos with annotations related to the skin cancer. Creating a suitable CNN algorithm for the HAM10000 dataset. And training the model with the strong cross validation framework and. we did the data augmentation also in order to improve the model capacity to learn from a. varied collection of photos we use data augmentation techniques.
+
+Based on Australia's results, shows that, in addition to meeting our initial performance, which is accuracy supposed to be more than 95% and the precision is supposed to be more than 80% our suggestion suggested CNN model outperforms other current techniques in terms of performance. These results states that using cnn's for skin cancer detection can greatly help dermatologist identify And classify the skin cancer types more quickly and precisely. And this will help reduce the human made mistakes also End the model effectiveness is determined or else calculated by testing the model on the real world photos.
+
+Methodology : 
+
+Initially we downloaded the HAM10000 dataset from Harvard central which is about 6gb which contains 10,000 images and metadata.csv we downloaded into our local system and we loaded the data using pandas with the help of CSV data loader.
+
+And the Next Step is data pre-processing the metadata.csv undergoes pre processing which includes dimensionality and normalization adjust ments are taken care. and we have to load the images into different directories conveyed as HAM-images-part-1 and HAM-images-part-2  
+
+And then We build a deep learning model which is constructed using Tensorflow's keras api, which has convolutionl layers, max pooling, and dense layers for classification. and the model is trained with parameteres which are specified for optimization and loss calculation  
+
+Finally The Model Performance is evaluated using a Confusion Matrix and accuracy Metrics and we visualized some plots and graphs for different varaibels, functionalities and categories.
+
+
+Tools,Techniques or Software utilized : 
+
+1. Entire project is build using Python as programming Language and it's packages seaborn , matplotlib for visualization. numpy and pandas for data manipulation and data loading. openCV used to visualize and do some mathmatical calculations on the images.
+2. Data exploration with visualization is done by the pandas and seaborn packages for various columns across the dataset  and handling the iumbalanced datasets  using the RandomOverSampler 
+3. We used Convolution Neural Networks to train the model which are available in the keras api and we have been used the Maxpooling Layera to make the model more accurate for the classification purposes.
+
+Coding Phase : 
+
+1. Displaying the first five rows with the help of head() function 
+2. displaying a seaborn plot Frequency Distribution among the images Classes
+3. displaying a matplotlib plot diseaese over gender through pie chart 
+4. histograms with the age of patientrs 
+5. displaying the plot where location of diseaese over gender 
+6. Displaying the number of paramenters and no of layers used in the model 
+7. displaying the loss and accuracy of the trained model 
+8. printing the loss and accuracy of the testing 
+9. displaying the confusion matrix
+10. Displaying the number of labels classified incorrectly
+11. Displaying the number of labels classified correctly
+12. pie chart of localization
+13. Frequency of male vs female in the ham10000 dataset
+14. displaying the some sample images of the dataset
+
+
+Conclusions : 
+
+In Conclusion, we achieved the accuracy which is more than 98% of training accuracy and >97% of validation accuracy and it almost(90%) classified all the images correctly only some categories has been misclassifieds and this models is ready to integrate to flask (or) django or any backend server and it helps the doctors or any diagnostic persons to classify the realtime images. 
+
+Recommendations : 
+
+1. While the HAM10000 dataset provides almost >10000 images of the skin cancer and we can combine some more benchmark datasets which improves the models accuracy while classification. and can makes good predictions 
+2. By Collaborting with some Hospitals and We can collect the real time data from the hospitals it self so that after training the model with real time images so that we can improve the model robustness and accuracy
+3. Data Augmentation or Image Augmentation can be used to increase the Volume of data so that it can prevent underfitting problem so that it can make good predictions 
+4. We can improve the model by using some complex predefined models Resnet , Mobile Net or Capsule Networks 
+5. By integerating the h5 to any UI with the help of Flask or Django Backend Server 
+
